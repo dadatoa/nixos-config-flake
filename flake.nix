@@ -34,6 +34,11 @@
           { environment.systemPackages = [ agenix.packages.${system}.default ]; }
 	      ];
       };
+      customIso = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+      	  ./customIso/configuration.nix 
+      };
     };
   };
 }
