@@ -14,7 +14,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, agenix }: 
+  outputs = { self, nixpkgs, agenix, ... }: 
   let 
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -35,9 +35,10 @@
 	      ];
       };
       customIso = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit system; };
         modules = [
       	  ./customIso/configuration.nix 
+        ];
       };
     };
   };
