@@ -6,6 +6,8 @@
       ./hardware-configuration.nix
       ./network.nix
       ./users.nix
+      ./servarr.nix 
+      ./shares.nix
     ];
 
   # Bootloader.
