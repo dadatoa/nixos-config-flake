@@ -6,12 +6,6 @@ imports = [
 ## platform 
 nixpkgs.hostPlatform = "x86_64-linux";
 
-# boot loader grub (test pour ventoy)
-boot.loader.grub = {
-  enable = true;
-  efiSupport = true;
-};
-
 # Load drivers for mac intel wifi
 boot.initrd.kernelModules = [ "wl" ];
 
