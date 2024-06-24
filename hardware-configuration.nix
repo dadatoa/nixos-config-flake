@@ -33,11 +33,6 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/mnt/datapool" =
-    { device = "/dev/disk/by-uuid/948c0ead-6173-460b-a1c8-295c8e247166";
-      fsType = "btrfs";
-    };
-
   fileSystems."/data/appdata" =
     { device = "/dev/disk/by-uuid/948c0ead-6173-460b-a1c8-295c8e247166";
       fsType = "btrfs";
