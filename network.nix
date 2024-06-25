@@ -18,6 +18,30 @@
       handle_path /jellyfin/* {
         reverse_proxy localhost:8096
         }
+      handle_path /jellyseerr/* {
+        reverse_proxy localhost:5055
+        }
+      handle_path /prowlarr/* {
+        reverse_proxy localhost:9696
+        }
+      handle_path /radarr/* {
+        reverse_proxy localhost:7878
+        }
+      handle_path /sonarr/* {
+        reverse_proxy localhost:8989
+        }
+      handle_path /bazarr/* {
+        reverse_proxy localhost:6767
+        }
+      handle_path /unison/* {
+        reverse_proxy localhost:9091
+        }
+      handle_path /uptime/* {
+        reverse_proxy localhost:3001
+        }
+      handle_path /dockge/* {
+        reverse_proxy localhost:5001
+        }
     '';
     };
 };
