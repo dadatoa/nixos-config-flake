@@ -65,6 +65,9 @@
   jellyfin
   ];
 
+  # enable autorandr pour autodetect monitors 
+  services.autorandr.enable = true;
+
   virtualisation = {
     containers.enable = true;
     podman = {
