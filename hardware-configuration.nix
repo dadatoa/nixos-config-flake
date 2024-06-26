@@ -34,24 +34,24 @@
     };
 
   fileSystems."/data/appdata" =
-    { device = "/dev/disk/by-uuid/948c0ead-6173-460b-a1c8-295c8e247166";
+    { device = "/dev/sda1";
       fsType = "btrfs";
-      options = [ "subvol=appdata" ];
+      options = [ "subvol=appdata" "users" ];
     };
 
-  fileSystems."/data/servarr" =
-    { device = "/dev/disk/by-uuid/948c0ead-6173-460b-a1c8-295c8e247166";
+  fileSystems."/data/media" =
+    { device = "/dev/sda1";
       fsType = "btrfs";
-      options = [ "subvol=servarr" ];
+      options = [ "subvol=media" "users" ];
     };
 
   fileSystems."/mnt/share" =
-    { device = "/dev/disk/by-uuid/948c0ead-6173-460b-a1c8-295c8e247166";
+    { device = "/dev/sda1";
       fsType = "btrfs";
-      options = [ "subvol=share" ];
+      options = [ "subvol=share" "users" ];
     };
   fileSystems."/mnt/datapool" =
-    { device = "/dev/disk/by-uuid/948c0ead-6173-460b-a1c8-295c8e247166";
+    { device = "/dev/sda1";
       fsType = "btrfs";
       options = [ "no-auto" "users" ];
     };
