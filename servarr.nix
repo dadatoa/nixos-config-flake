@@ -38,9 +38,9 @@
       dataDir = "/data/appdata/jelly";
     };
     # jellyseerr
-    jellyseerr = {
-      enable = true;
-      openFirewall = true;
-    };
+    # jellyseerr = {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
   };
 }
