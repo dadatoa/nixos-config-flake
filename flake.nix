@@ -12,9 +12,13 @@
         darwin.follows = "";
       };
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }
   };
 
-  outputs = { self, nixpkgs, agenix, ... }: 
+  outputs = { self, nixpkgs, agenix, disko, ... }: 
   let 
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -34,6 +38,15 @@
           { environment.systemPackages = [ agenix.packages.${system}.default ]; }
 	      ];
       };
+
+      anywhere = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+      	  disko.nixosModules.disko
+          ./anywhere.nix
+        ];
+      }
+
       customIso = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system; };
         modules = [
