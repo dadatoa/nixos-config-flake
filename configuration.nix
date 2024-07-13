@@ -11,6 +11,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
+  boot.kernelModules = [ "88x2bu" ];
 
   boot.loader.efi.canTouchEfiVariables = true;
   # Set your time zone.
