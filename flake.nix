@@ -30,12 +30,13 @@
   in
   {
     nixosConfigurations = {
-      myNixos = nixpkgs.lib.nixosSystem {
+      nas = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system; };
         modules = [
-      	  ./configuration.nix
+      	  disko.nixosModules.disko
           agenix.nixosModules.default
           { environment.systemPackages = [ agenix.packages.${system}.default ]; }
+          ./configuration.nix
 	      ];
       };
 

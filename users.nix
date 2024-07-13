@@ -11,7 +11,7 @@
       packages = with pkgs; [];
       };
 
-    users.dadatoa = {
+    users.nixos = { # admin user defined to nixos
       isNormalUser = true;
       description = "admin system";
       extraGroups = [ "wheel" "networkmanager" ];
@@ -29,12 +29,12 @@
     
     };
 
-  # no sudo password for dadatoa 
+  # no sudo password for admin user
   # no password is set for this account
   # should only be accessed threw ssh with ssh key
   security.sudo.extraRules = [
   {
-    users = [ "dadatoa" ];
+    users = [ "nixos" ];
     commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
   }
   ];

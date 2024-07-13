@@ -4,10 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./network.nix
       ./users.nix
-      ./servarr.nix 
-      ./shares.nix
+      ./nas.nix
     ];
 
   # Bootloader.
@@ -32,24 +30,20 @@
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
   };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  
+  # configure console
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+    useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable experimental features 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # default editor - enable in home manager
-  # programs.neovim = {
-  # enable = true;
-  # defaultEditor = true;
-  # };
+  # allow unfree packages 
+  # nixpkgs.config.allowUnfree = true; # defined in flake
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
   git
   neovim
@@ -60,13 +54,20 @@
   tailscale
   exfat
   btrfs-progs
-  jellyfin-ffmpeg
-  jellyfin-web
-  jellyfin
   ];
 
-  # enable autorandr pour autodetect monitors 
-  services.autorandr.enable = true;
+  services = {
+    # enable autorandr pour autodetect monitors 
+    autorandr.enable = true;
+    # Enable ssh
+    openssh = {
+      enable = true;
+      openFirewall = true;
+    };
+    # Enable Tailscale
+    tailscale.enable = true;
+    
+  };
 
   virtualisation = {
     containers.enable = true;
@@ -86,12 +87,5 @@
   };
   
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  system.stateVersion = "24.11";
 }
