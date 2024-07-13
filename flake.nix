@@ -15,7 +15,7 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
   };
 
   outputs = { self, nixpkgs, agenix, disko, ... }: 
@@ -25,7 +25,7 @@
       inherit system;
       config = {
         allowUnfree = true;
-	};
+      };
     };
   in
   {
@@ -45,7 +45,7 @@
       	  disko.nixosModules.disko
           ./anywhere.nix
         ];
-      }
+      };
 
       customIso = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system; };
