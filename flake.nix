@@ -34,6 +34,7 @@
         specialArgs = { inherit system; };
         modules = [
       	  disko.nixosModules.disko
+          (import ./disko.nix { device = "/dev/nvme0n1"; })
           agenix.nixosModules.default
           { environment.systemPackages = [ agenix.packages.${system}.default ]; }
           ./configuration.nix
