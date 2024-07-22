@@ -30,7 +30,7 @@
   in
   {
     nixosConfigurations = {
-      nas = nixpkgs.lib.nixosSystem {
+      nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system; };
         modules = [
       	  disko.nixosModules.disko
@@ -38,7 +38,7 @@
           agenix.nixosModules.default
           { environment.systemPackages = [ agenix.packages.${system}.default ]; }
           ./configuration.nix
-	      ];
+	];
       };
 
       anywhere = nixpkgs.lib.nixosSystem {
