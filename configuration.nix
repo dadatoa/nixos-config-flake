@@ -11,7 +11,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
-  boot.kernelModules = [ "88x2bu" ];
+  # boot.initrd.kernelModules = [ "wl" ];
+  boot.kernelModules = [ "88x2bu" ]; # "wl"
+  # boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   boot.loader.efi.canTouchEfiVariables = true;
   # Set your time zone.
@@ -33,29 +35,37 @@
   };
   
   # configure console
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkb.options in tty.
+  # };
 
   # Enable experimental features 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # allow unfree packages 
-  # nixpkgs.config.allowUnfree = true; # defined in flake
+  nixpkgs.config.allowUnfree = true; # defined in flake
 
   environment.systemPackages = with pkgs; [
+  btrfs-progs
+  curl 
+  exfat 
   git
+  fish
+  home-manager
   neovim
-  curl
-  wget
   nmap
   python3
   tailscale
-  exfat
-  btrfs-progs
+  wget
+  zsh
   ];
+
+  programs = {
+    fish.enable = true;
+    zsh.enable = true;
+  };
 
   services = {
     # enable autorandr pour autodetect monitors 
